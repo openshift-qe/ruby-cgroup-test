@@ -3,7 +3,7 @@ USER root
 RUN wget http://people.seas.harvard.edu/~apw/stress/stress-1.0.4.tar.gz
 RUN tar -zxvf stress-1.0.4.tar.gz
 RUN cd stress-1.0.4 && ./configure && make && make install
-RUN stress --cpu 8 --timeout=1200s
+RUN stress --cpu 8 --timeout 10s
 RUN cp -r /sys/fs/cgroup/cpuacct,cpu/cpu* /tmp
 RUN cp -r /sys/fs/cgroup/memory/memory.limit_in_bytes /tmp/memlimit
 
