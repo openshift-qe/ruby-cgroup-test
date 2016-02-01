@@ -6,4 +6,15 @@ cat /sys/fs/cgroup/cpuacct,cpu/cpu.shares
 cat /sys/fs/cgroup/cpuacct,cpu/cpu.cfs_period_us
 cat /sys/fs/cgroup/cpuacct,cpu/cpu.cfs_quota_us
 
+wget http://people.seas.harvard.edu/~apw/stress/stress-1.0.4.tar.gz
+tar -zxvf stress-1.0.4.tar.gz
+mkdir ${HOME}/stress
+cd stress-1.0.4 && ./configure --prefix=${HOME}/stress && make && make install
+${HOME}/stress/bin/stress  --vm 1 --vm-bytes 256M
+
+cat /sys/fs/cgroup/memory/memory.limit_in_bytes
+cat /sys/fs/cgroup/cpuacct,cpu/cpu.shares
+cat /sys/fs/cgroup/cpuacct,cpu/cpu.cfs_period_us
+cat /sys/fs/cgroup/cpuacct,cpu/cpu.cfs_quota_us
+
 exec /usr/libexec/s2i/assemble
