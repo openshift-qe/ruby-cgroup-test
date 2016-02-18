@@ -10,11 +10,9 @@ CMD ["scl", "enable", "rh-ruby22", "./run.sh"]
 
 USER root
 RUN chmod og+rw /opt/app-root/src/db
-USER default
-USER root
-RUN wget http://people.seas.harvard.edu/~apw/stress/stress-1.0.4.tar.gz
-RUN tar -zxvf stress-1.0.4.tar.gz
-RUN cd stress-1.0.4 && ./configure && make && make install
-RUN stress --cpu 1
+RUN wget https://cdn.pmylund.com/files/tools/cpuburn/linux/cpuburn-1.0-amd64.tar.gz 
+RUN tar -zxvf cpuburn-1.0-amd64.tar.gz
+RUN cd cpuburn & ./cpuburn -n 1
 RUN cp -r /sys/fs/cgroup/cpuacct,cpu/cpu* /tmp
 RUN cp -r /sys/fs/cgroup/memory/memory.limit_in_bytes /tmp/memlimit
+USER default
