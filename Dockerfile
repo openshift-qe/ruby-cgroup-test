@@ -12,7 +12,7 @@ USER root
 RUN chmod og+rw /opt/app-root/src/db
 RUN wget https://cdn.pmylund.com/files/tools/cpuburn/linux/cpuburn-1.0-amd64.tar.gz 
 RUN tar -zxvf cpuburn-1.0-amd64.tar.gz
-RUN cd cpuburn && ./cpuburn -n 2
+RUN cd cpuburn && ./cpuburn
 RUN cp -r /sys/fs/cgroup/cpuacct,cpu/cpu* /tmp
 RUN cp -r /sys/fs/cgroup/memory/memory.limit_in_bytes /tmp/memlimit
 USER default
