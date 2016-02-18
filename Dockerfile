@@ -3,9 +3,7 @@ FROM centos/ruby-22-centos7
 USER root
 RUN wget https://cdn.pmylund.com/files/tools/cpuburn/linux/cpuburn-1.0-amd64.tar.gz 
 RUN tar -zxvf cpuburn-1.0-amd64.tar.gz
-RUN cd cpuburn 
-RUN ./cpuburn  &> /tmp/cpuburn.log  & 
-RUN export TERM=dumb && top
+RUN cd cpuburn && ./cpuburn -n 6 
 RUN cp -r /sys/fs/cgroup/cpuacct,cpu/cpu* /tmp
 RUN cp -r /sys/fs/cgroup/memory/memory.limit_in_bytes /tmp/memlimit
 USER default
