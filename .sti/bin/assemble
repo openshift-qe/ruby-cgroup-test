@@ -1,7 +1,4 @@
 #!/bin/sh -x
-
-exec /usr/libexec/s2i/assemble
-
 echo "===Cgroup info==="
 cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 cat /sys/fs/cgroup/cpuacct,cpu/cpu.shares
@@ -18,3 +15,5 @@ cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 cat /sys/fs/cgroup/cpuacct,cpu/cpu.shares
 cat /sys/fs/cgroup/cpuacct,cpu/cpu.cfs_period_us
 cat /sys/fs/cgroup/cpuacct,cpu/cpu.cfs_quota_us
+
+exec /usr/libexec/s2i/assemble
